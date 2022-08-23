@@ -1,4 +1,5 @@
 using AuthFuncsAPI.Extensions;
+using AuthFuncsRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,7 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-// extensions 
+builder.Services.AddDbContext<AFContext>();
+
+// service extensions 
 builder.Services.ConfigureCors();
 builder.Services.RegisterServices();
 
