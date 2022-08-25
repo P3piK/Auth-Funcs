@@ -1,5 +1,9 @@
-﻿using AuthFuncsService.Interface;
+﻿using AuthFuncsRepository.Entity;
+using AuthFuncsService.Dto.Authorization;
+using AuthFuncsService.Interface;
 using AuthFuncsService.Service;
+using FluentValidation;
+using Microsoft.AspNetCore.Identity;
 
 namespace AuthFuncsAPI.Extensions
 {
@@ -18,7 +22,11 @@ namespace AuthFuncsAPI.Extensions
 
         public static void RegisterServices(this IServiceCollection services)
         {
-            services.AddScoped(typeof(IAuthorizationService), typeof(AuthorizationService));
+            services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+            services.AddScoped<IValidator<RegisterRequestDto>, RegisterRequestDtoValidator>();
+
+            services.AddScoped<IAuthorizationService, AuthorizationService>();
+
         }
     }
 }

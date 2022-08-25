@@ -1,23 +1,33 @@
-﻿using AuthFuncsAPI.Dto.Authorization;
+﻿using AuthFuncsService.Dto.Authorization;
+using AuthFuncsService.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AuthFuncsAPI.Controllers
+namespace AuthFuncsService.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/auth")]
     [ApiController]
     public class AuthorizationController : ControllerBase
     {
-        [HttpPost("login")]
-        public LoginResponseDto Login(LoginRequestDto loginRequest)
+        public AuthorizationController(IAuthorizationService authorizationService)
         {
-            return new LoginResponseDto();
+            AuthorizationService = authorizationService;
+        }
+
+        public IAuthorizationService AuthorizationService { get; }
+
+        [HttpPost("login")]
+        public ActionResult Login(LoginRequestDto loginRequest)
+        {
+            return Ok(new LoginResponseDto());
         }
 
         [HttpPost("register")]
-        public RegisterResponseDto Register([FromBody]RegisterRequestDto registerRequest)
+        public ActionResult Register([FromBody]RegisterRequestDto registerRequest)
         {
-            return new RegisterResponseDto();
+            var ret = AuthorizationService.RegisterUser(registerRequest);
+
+            return Created("user", ret);
         }
 
     }

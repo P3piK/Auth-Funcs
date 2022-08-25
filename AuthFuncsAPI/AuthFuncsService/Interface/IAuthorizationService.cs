@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AuthFuncsService.Dto.Authorization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,8 @@ namespace AuthFuncsService.Interface
 {
     public interface IAuthorizationService
     {
+        RegisterResponseDto RegisterUser(RegisterRequestDto registerRequest);
+        LoginResponseDto Login(LoginRequestDto loginRequest);
+
     }
 }

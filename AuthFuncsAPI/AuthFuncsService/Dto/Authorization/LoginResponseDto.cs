@@ -1,4 +1,4 @@
-﻿namespace AuthFuncsAPI.Dto.Authorization
+﻿namespace AuthFuncsService.Dto.Authorization
 {
     public class LoginResponseDto
     {
