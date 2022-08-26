@@ -14,7 +14,7 @@ builder.Services.AddDbContext<AFContext>();
 // service extensions 
 builder.Services.ConfigureCors();
 builder.Services.RegisterServices();
-
+builder.Services.ConfigureJwtAuthentication(builder.Configuration);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -31,6 +31,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
