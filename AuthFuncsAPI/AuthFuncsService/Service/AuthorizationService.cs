@@ -2,7 +2,7 @@
 using AuthFuncsRepository.Entity;
 using AuthFuncsService.Dto.Authorization;
 using AuthFuncsService.Interface;
-using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +13,14 @@ namespace AuthFuncsService.Service
 {
     public class AuthorizationService : IAuthorizationService
     {
-        public AuthorizationService(AFContext context, IPasswordHasher passwordHasher)
+        public AuthorizationService(AFContext context, IPasswordHasher<User> passwordHasher)
         {
             Context = context;
             PasswordHasher = passwordHasher;
         }
 
         public AFContext Context { get; }
-        public IPasswordHasher PasswordHasher { get; }
+        public IPasswordHasher<User> PasswordHasher { get; }
 
         public LoginResponseDto Login(LoginRequestDto loginRequest)
         {
@@ -32,7 +32,7 @@ namespace AuthFuncsService.Service
                 return response;
             }
 
-            if (PasswordHasher.VerifyHashedPassword(loginRequest.Password, user.Password) == PasswordVerificationResult.Success)
+            if (PasswordHasher.VerifyHashedPassword(user, loginRequest.Password, user.Password) == PasswordVerificationResult.Success)
             {
 
             }
@@ -47,8 +47,10 @@ namespace AuthFuncsService.Service
             var user = new User(Context)
             {
                 Login = registerRequest.Login,
-                Password = PasswordHasher.HashPassword(registerRequest.Password),
+                RoleId = 1,         // TODO
+                StatusId = 1,       // TODO
             };
+            user.Password = PasswordHasher.HashPassword(user, registerRequest.Password);
             user.Persist();
 
             return ret;
