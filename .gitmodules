@@ -1,0 +1,3 @@
+[submodule "Auth-Funcs-API"]
+	path = Auth-Funcs-API
+	url = https://github.com/P3piK/Auth-Funcs-API.git
