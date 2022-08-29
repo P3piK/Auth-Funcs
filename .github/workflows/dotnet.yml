@@ -18,11 +18,8 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      working-directory: ./auth-funcs-api
-      run: dotnet restore
+      run: dotnet restore ./auth-funcs-api/AuthFuncsAPI.sln
     - name: Build
-      working-directory: ./auth-funcs-api
-      run: dotnet build --no-restore
-    - name: Test
-      working-directory: ./auth-funcs-api
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet build ./auth-funcs-api/AuthFuncsAPI.sln --no-restore
+    - name: TestS
+      run: dotnet test ./auth-funcs-api/AuthFuncsAPI.sln --no-build --verbosity normal
