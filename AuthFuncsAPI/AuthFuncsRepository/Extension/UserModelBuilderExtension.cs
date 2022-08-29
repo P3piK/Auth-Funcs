@@ -20,7 +20,7 @@ namespace AuthFuncsRepository.Extension
         {
             modelBuilder.Entity<User>().HasData(new List<User>() 
             {
-                new User() { Id = 1, Login = "admin", Password = "pass123", StatusId = 1, RoleId = 1, Modified = DateTime.Now }
+                new User() { Id = 1, Login = "admin", Password = "AQAAAAEAACcQAAAAEH7ClDMgufncQOTcKuYJUkXMrMFSegWBHFAQphveG7ph/NI3O86jRBbRnwtsqCGLNA==", StatusId = 1, RoleId = 1, Modified = DateTime.Now }
             });
         }
 

@@ -15,4 +15,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AuthFuncsCore\AuthFuncsCore.csproj" />
+  </ItemGroup>
+
 </Project>

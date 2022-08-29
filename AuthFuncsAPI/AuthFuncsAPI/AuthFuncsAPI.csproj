@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AuthFuncsCore\AuthFuncsCore.csproj" />
     <ProjectReference Include="..\AuthFuncsService\AuthFuncsService.csproj" />
   </ItemGroup>
 

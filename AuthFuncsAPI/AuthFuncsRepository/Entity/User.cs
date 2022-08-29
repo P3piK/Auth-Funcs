@@ -20,6 +20,7 @@ namespace AuthFuncsRepository.Entity
         private readonly DbContext context;
 
         #region Constructor
+
         public User()
         {
         }
@@ -28,6 +29,7 @@ namespace AuthFuncsRepository.Entity
         {
             this.context = context;
         }
+
         #endregion
 
         public int Id { get; set; }

@@ -1,10 +1,12 @@
-﻿using AuthFuncsAPI.Config;
+﻿using AuthFuncsAPI.Middleware;
+using AuthFuncsCore.Config;
 using AuthFuncsRepository.Entity;
 using AuthFuncsService.Dto.Authorization;
 using AuthFuncsService.Interface;
 using AuthFuncsService.Service;
 using FluentValidation;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -27,16 +29,22 @@ namespace AuthFuncsAPI.Extensions
         {
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
             services.AddScoped<IValidator<RegisterRequestDto>, RegisterRequestDtoValidator>();
+            services.AddScoped<ErrorHandlingMiddleware>();
 
             services.AddScoped<IAuthorizationService, AuthorizationService>();
 
         }
 
-        public static void ConfigureJwtAuthentication(this IServiceCollection services, ConfigurationManager configuration)
+        public static void RegisterConfiguration(this IServiceCollection services, ConfigurationManager configuration)
         {
             var authenticationConfig = new AuthenticationConfig();
             configuration.GetSection("Authentication").Bind(authenticationConfig);
 
+            services.AddSingleton(authenticationConfig);
+        }
+
+        public static void ConfigureJwtAuthentication(this IServiceCollection services, AuthenticationConfig authenticationConfig)
+        {
             services.AddAuthentication(option =>
             {
                 option.DefaultAuthenticateScheme = "Bearer";
