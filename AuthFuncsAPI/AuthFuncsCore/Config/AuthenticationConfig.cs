@@ -1,4 +1,4 @@
-﻿namespace AuthFuncsAPI.Config
+﻿namespace AuthFuncsCore.Config
 {
     public class AuthenticationConfig
     {

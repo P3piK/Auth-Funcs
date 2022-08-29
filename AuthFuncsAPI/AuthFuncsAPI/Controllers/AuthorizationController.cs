@@ -17,9 +17,11 @@ namespace AuthFuncsService.Controllers
         public IAuthorizationService AuthorizationService { get; }
 
         [HttpPost("login")]
-        public ActionResult Login(LoginRequestDto loginRequest)
+        public ActionResult Login([FromBody]LoginRequestDto loginRequest)
         {
-            return Ok(new LoginResponseDto());
+            var ret = AuthorizationService.Login(loginRequest);
+
+            return Ok(ret);
         }
 
         [HttpPost("register")]

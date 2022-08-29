@@ -12,7 +12,7 @@ namespace AuthFuncsRepository.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Login", "Modified", "ModifierId", "Password", "Status" },
-                values: new object[] { 1, "admin", new DateTime(2022, 8, 22, 16, 5, 37, 192, DateTimeKind.Local).AddTicks(39), null, "pass123", 0 });
+                values: new object[] { 1, "admin", new DateTime(2022, 8, 22, 16, 5, 37, 192, DateTimeKind.Local).AddTicks(39), null, "AQAAAAEAACcQAAAAEH7ClDMgufncQOTcKuYJUkXMrMFSegWBHFAQphveG7ph/NI3O86jRBbRnwtsqCGLNA==", 0 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

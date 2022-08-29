@@ -29,7 +29,7 @@ namespace AuthFuncsService.Dto.Authorization
                 {
                     if (dbContext.Users.Any(u => u.Login == value))
                     {
-                        context.AddFailure("login", "Login already in use.");
+                        context.AddFailure("login", "Login already in use");
                     }
                 });
         }
