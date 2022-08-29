@@ -1,15 +1,25 @@
 using AuthFuncsAPI.Extensions;
+using AuthFuncsAPI.Middleware;
+using AuthFuncsCore.Config;
+using AuthFuncsRepository;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
 
-// extensions 
-builder.Services.ConfigureCors();
+builder.Services.AddDbContext<AFContext>();
+
+// service extensions 
+builder.Services.RegisterConfiguration(builder.Configuration);
 builder.Services.RegisterServices();
 
+builder.Services.ConfigureCors();
+var serviceProvider = builder.Services.BuildServiceProvider();
+builder.Services.ConfigureJwtAuthentication(serviceProvider.GetService<AuthenticationConfig>());
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -24,8 +34,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
