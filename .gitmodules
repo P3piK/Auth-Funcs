@@ -1,3 +1,12 @@
 [submodule "Auth-Funcs-API"]
 	path = Auth-Funcs-API
 	url = https://github.com/P3piK/Auth-Funcs-API.git
+[submodule "Auth-Funcs-gRPC"]
+	path = Auth-Funcs-gRPC
+	url = https://github.com/P3piK/Auth-Funcs-gRPC.git
+[submodule "Auth-Funcs-UI"]
+	path = Auth-Funcs-UI
+	url = https://github.com/P3piK/Auth-Funcs-UI.git
+[submodule "Auth-Funcs-MQ"]
+	path = Auth-Funcs-MQ
+	url = https://github.com/P3piK/Auth-Funcs-MQ.git
