@@ -4,3 +4,6 @@
 [submodule "Auth-Funcs-MQ"]
 	path = Auth-Funcs-MQ
 	url = https://github.com/P3piK/Auth-Funcs-MQ.git
+[submodule "Auth-Funcs-UI"]
+	path = Auth-Funcs-UI
+	url = https://github.com/P3piK/Auth-Funcs-UI.git
